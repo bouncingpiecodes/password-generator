@@ -68,8 +68,27 @@ function generatePassword() {
   for (x = 0; x < passwordNumbers; x++) {
     console.log(x);
     var option = options[Math.floor(Math.random() * options.length)];
+    switch (option) {
+      case "numericCharacters":
+        password = password + Math.floor(Math.random() * 10);
+        break;
+      case "lowerCase":
+        password =
+          password + letters[Math.floor(Math.random() * letters.length)];
+        break;
+      case "upperCase":
+        password =
+          password +
+          letters[Math.floor(Math.random() * letters.length)].toUpperCase();
+        break;
+      case "specialCharacters":
+        password =
+          password + characters[Math.floor(Math.random() * characters.length)];
+        break;
+    }
     console.log(option);
   }
+  return password;
 }
 
 // Add event listener to generate button
