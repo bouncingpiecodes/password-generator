@@ -31,7 +31,7 @@ function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
-  passwordText.value = password;
+  if (!!passwordText.value) passwordText.value = password;
 }
 
 function generatePassword() {
@@ -54,7 +54,7 @@ function generatePassword() {
       getPasswordNumbers();
     }
   };
-  if (getPasswordNumbers() === false) return;
+  if (!getPasswordNumbers()) return;
 
   var specialCharacters = confirm("Click OK to confirm special characters");
   if (specialCharacters) {
@@ -77,7 +77,8 @@ function generatePassword() {
   var password = "";
   console.log(options);
   if (options.length > 0) {
-    return alert("No options were selected");
+    alert("No options were selected");
+    return false;
   }
   for (x = 0; x < passwordNumbers; x++) {
     console.log(x);
@@ -100,7 +101,6 @@ function generatePassword() {
           password + characters[Math.floor(Math.random() * characters.length)];
         break;
     }
-    console.log(option);
   }
   return password;
 }
