@@ -43,6 +43,7 @@ function generatePassword() {
       "How many characters would you like your password to contain",
       8
     );
+    if (!passwordNumbers) return false;
     var parseNumber = parseInt(passwordNumbers);
     if (
       !Number.isInteger(parseNumber) ||
@@ -53,7 +54,7 @@ function generatePassword() {
       getPasswordNumbers();
     }
   };
-  getPasswordNumbers();
+  if (getPasswordNumbers() === false) return;
 
   var specialCharacters = confirm("Click OK to confirm special characters");
   if (specialCharacters) {
@@ -75,7 +76,9 @@ function generatePassword() {
   }
   var password = "";
   console.log(options);
-
+  if (options.length > 0) {
+    return alert("No options were selected");
+  }
   for (x = 0; x < passwordNumbers; x++) {
     console.log(x);
     var option = options[Math.floor(Math.random() * options.length)];
@@ -102,5 +105,4 @@ function generatePassword() {
   return password;
 }
 
-// Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
