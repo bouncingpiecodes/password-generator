@@ -1,4 +1,3 @@
-// Assignment Code
 var generateBtn = document.querySelector("#generate");
 var characters = [
   ".",
@@ -28,7 +27,6 @@ var characters = [
   "~",
 ];
 var letters = "abcdefghijklmnopqrstuvwxyz";
-// Write password to the #password input
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
@@ -39,11 +37,24 @@ function writePassword() {
 function generatePassword() {
   console.log("generatePassword");
   var options = [];
-  var passwordNumbers = prompt(
-    "How many characters would you like your password to contain",
-    8
-  );
-  console.log(passwordNumbers);
+  var passwordNumbers;
+  var getPasswordNumbers = () => {
+    passwordNumbers = prompt(
+      "How many characters would you like your password to contain",
+      8
+    );
+    var parseNumber = parseInt(passwordNumbers);
+    if (
+      !Number.isInteger(parseNumber) ||
+      parseNumber > 128 ||
+      parseNumber < 8
+    ) {
+      alert("Value must be a number between 8 and 128");
+      getPasswordNumbers();
+    }
+  };
+  getPasswordNumbers();
+
   var specialCharacters = confirm("Click OK to confirm special characters");
   if (specialCharacters) {
     options.push("specialCharacters");
