@@ -34,8 +34,7 @@ function writePassword() {
   if (!!passwordText.value) passwordText.value = password;
 }
 
-function generatePassword() {
-  console.log("generatePassword");
+function generatePassword() 
   var options = [];
   var passwordNumbers;
   var getPasswordNumbers = () => {
@@ -52,6 +51,8 @@ function generatePassword() {
     ) {
       alert("Value must be a number between 8 and 128");
       getPasswordNumbers();
+    } else {
+      return true;
     }
   };
   if (!getPasswordNumbers()) return;
@@ -75,13 +76,11 @@ function generatePassword() {
     options.push("upperCase");
   }
   var password = "";
-  console.log(options);
-  if (options.length > 0) {
+  if (options.length === 0) {
     alert("No options were selected");
     return false;
   }
   for (x = 0; x < passwordNumbers; x++) {
-    console.log(x);
     var option = options[Math.floor(Math.random() * options.length)];
     switch (option) {
       case "numericCharacters":
