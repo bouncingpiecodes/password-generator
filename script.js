@@ -31,10 +31,10 @@ function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
-  if (!!passwordText.value) passwordText.value = password;
+  if (!!password) passwordText.value = password;
 }
 
-function generatePassword() 
+function generatePassword() {
   var options = [];
   var passwordNumbers;
   var getPasswordNumbers = () => {
